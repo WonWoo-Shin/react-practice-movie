@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 function Detail() {
   const [isLoading, setIsLoading] = useState(true);
   const [movie, setMovie] = useState({});
-  const id = useParams().id;
+  const { id } = useParams();
 
   useEffect(() => {
     fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
@@ -13,7 +13,7 @@ function Detail() {
         setMovie(json.data.movie);
         setIsLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -25,8 +25,8 @@ function Detail() {
           <h2>{movie.title}</h2>
           <p>{movie.description_intro}</p>
           <ul>
-            {movie.genres.map((genre) => (
-              <li>{genre}</li>
+            {movie.genres.map((g, index) => (
+              <li key={index}>{g}</li>
             ))}
           </ul>
         </div>
