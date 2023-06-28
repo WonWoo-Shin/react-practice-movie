@@ -19,13 +19,12 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Movies</h1>
-      <hr />
+    <>
+      <h1 className="header">Movies</h1>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <h2 className="loading">Loading...</h2>
       ) : (
-        <div>
+        <div className="main">
           {movies.map((movie) => (
             <Movie
               key={movie.id}
@@ -38,7 +37,7 @@ function Home() {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
